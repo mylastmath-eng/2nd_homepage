@@ -1,44 +1,167 @@
-<form action="https://formspree.io/f/xjgepopj" method="POST" class="space-y-6">
-    <div>
-        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">이름 <span class="text-red-500">*</span></label>
-        <input type="text" id="name" name="이름" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue focus:border-transparent outline-none transition" placeholder="홍길동">
-    </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성생명 GFC 모집 - 부산제일지점</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .text-samsung-blue { color: #034EA2; }
+        .bg-samsung-blue { background-color: #034EA2; }
+        .hover-bg-samsung-blue:hover { background-color: #023b7a; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden-page { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <div>
-        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">연락처 <span class="text-red-500">*</span></label>
-        <input type="tel" id="phone" name="연락처" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue focus:border-transparent outline-none transition" placeholder="010-0000-0000">
-    </div>
-
-    <div>
-        <label for="age" class="block text-sm font-medium text-gray-700 mb-1">나이</label>
-        <input type="number" id="age" name="나이" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue focus:border-transparent outline-none transition" placeholder="만 나이 입력">
-    </div>
-
-    <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">경력 유무</label>
-        <div class="flex gap-4">
-            <label class="flex items-center">
-                <input type="radio" name="경력구분" value="신입" class="w-4 h-4 text-samsung-blue border-gray-300 focus:ring-samsung-blue" checked>
-                <span class="ml-2 text-gray-700">신입</span>
-            </label>
-            <label class="flex items-center">
-                <input type="radio" name="경력구분" value="경력" class="w-4 h-4 text-samsung-blue border-gray-300 focus:ring-samsung-blue">
-                <span class="ml-2 text-gray-700">경력</span>
-            </label>
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-samsung-blue rounded-full flex items-center justify-center text-white font-bold text-xl">S</div>
+                        <span class="font-bold text-2xl text-gray-900 tracking-tight">SAMSUNGLIFE <span class="text-samsung-blue text-lg font-normal">GFC</span></span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="navigateTo('sub1')" class="text-gray-600 hover:text-samsung-blue font-medium transition">상세 정보</button>
+                    <button onclick="navigateTo('sub2')" class="text-gray-600 hover:text-samsung-blue font-medium transition">기능/서비스</button>
+                    <button onclick="navigateTo('sub3')" class="text-gray-600 hover:text-samsung-blue font-medium transition">소개/안내</button>
+                    <button onclick="navigateTo('sub4')" class="bg-samsung-blue text-white px-5 py-2 rounded-full hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">지원하기</button>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-samsung-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="navigateTo('sub1')" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-samsung-blue">상세 정보</button>
+                <button onclick="navigateTo('sub2')" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-samsung-blue">기능/서비스</button>
+                <button onclick="navigateTo('sub3')" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-samsung-blue">소개/안내</button>
+                <button onclick="navigateTo('sub4')" class="block w-full text-left px-3 py-2 text-base font-medium text-samsung-blue font-bold">지원하기</button>
+            </div>
+        </div>
+    </header>
 
-    <div>
-        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">문의사항 (선택)</label>
-        <textarea id="message" name="문의내용" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue focus:border-transparent outline-none transition" placeholder="궁금한 점이 있다면 자유롭게 적어주세요."></textarea>
-    </div>
+    <main class="flex-grow pt-20">
+        <div id="home" class="fade-in">
+            <section class="relative bg-gray-900 text-white overflow-hidden h-[600px] lg:h-[700px] flex items-center">
+                <div class="absolute inset-0">
+                    <img src="https://loremflickr.com/1600/900/business,office" alt="Hero Background" class="w-full h-full object-cover opacity-40">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-transparent"></div>
+                </div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <span class="text-yellow-400 font-bold tracking-wider uppercase mb-4 text-sm animate-pulse">삼성생명 부산제일지점 GFC 모집</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">당신의 열정이<br><span class="text-blue-300">연봉을 결정합니다</span></h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">활동력만 있으시다면 기본급 150만원 + 성과급. 월 500만원 이상의 수익을 올릴 수 있는 최고의 직업에 도전하세요.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="navigateTo('sub4')" class="bg-samsung-blue hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition shadow-xl">지원하기 <i class="fas fa-arrow-right"></i></button>
+                        <button onclick="navigateTo('sub1')" class="bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold py-4 px-8 rounded-lg text-lg transition border border-white/30">자세히 알아보기</button>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-    <div class="pt-4">
-        <button type="submit" class="w-full bg-samsung-blue text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">
-            상담 신청하기
-        </button>
-        <p class="text-center text-xs text-gray-400 mt-4">
-            * 개인정보는 채용 상담 목적으로만 활용되며 안전하게 보호됩니다.
-        </p>
-    </div>
-</form>
+        <div id="sub4" class="hidden-page fade-in py-12">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <button onclick="navigateTo('home')" class="text-gray-500 hover:text-samsung-blue mb-4 inline-flex items-center gap-2"><i class="fas fa-arrow-left"></i> 홈으로 돌아가기</button>
+                    <h1 class="text-3xl font-bold text-gray-900">입사 지원 및 상담 신청</h1>
+                    <p class="text-gray-600 mt-2">입력하신 정보는 담당자 이메일로 즉시 안전하게 전달됩니다.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border-t-4 border-samsung-blue">
+                    <form action="https://formspree.io/f/xjgepopj" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">이름 <span class="text-red-500">*</span></label>
+                            <input type="text" name="이름" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue outline-none" placeholder="홍길동">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">연락처 <span class="text-red-500">*</span></label>
+                            <input type="tel" name="연락처" id="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue outline-none" placeholder="010-0000-0000">
+                        </div>
+
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-1">나이</label>
+                            <input type="number" name="나이" id="age" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue outline-none" placeholder="만 나이 입력">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">경력 유무</label>
+                            <div class="flex gap-4">
+                                <label class="flex items-center"><input type="radio" name="경력" value="신입" checked class="w-4 h-4 text-samsung-blue"><span class="ml-2">신입</span></label>
+                                <label class="flex items-center"><input type="radio" name="경력" value="경력" class="w-4 h-4 text-samsung-blue"><span class="ml-2">경력</span></label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">문의사항 (선택)</label>
+                            <textarea name="메시지" id="message" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-samsung-blue outline-none" placeholder="궁금한 점을 적어주세요."></textarea>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-samsung-blue text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-lg transform hover:-translate-y-0.5">상담 신청하기</button>
+                            <p class="text-center text-xs text-gray-400 mt-4">* 제출 시 담당자에게 즉시 메일이 발송됩니다.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="sub1" class="hidden-page fade-in py-12 px-4 text-center">
+            <button onclick="navigateTo('home')" class="mb-4 text-gray-500">홈으로</button>
+            <h2 class="text-2xl font-bold">상세 정보 페이지입니다.</h2>
+        </div>
+        <div id="sub2" class="hidden-page fade-in py-12 px-4 text-center">
+            <button onclick="navigateTo('home')" class="mb-4 text-gray-500">홈으로</button>
+            <h2 class="text-2xl font-bold">기능/서비스 페이지입니다.</h2>
+        </div>
+        <div id="sub3" class="hidden-page fade-in py-12 px-4 text-center">
+            <button onclick="navigateTo('home')" class="mb-4 text-gray-500">홈으로</button>
+            <h2 class="text-2xl font-bold">지점 소개 페이지입니다.</h2>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <h3 class="text-white font-bold text-lg mb-4">삼성생명 부산제일지점</h3>
+            <p class="text-sm">부산 부산진구 중앙대로 639 | 담당자: 김훈 | 010-4892-2809</p>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(pageId) {
+            // 모든 페이지 숨기기
+            document.getElementById('home').classList.add('hidden-page');
+            document.getElementById('sub1').classList.add('hidden-page');
+            document.getElementById('sub2').classList.add('hidden-page');
+            document.getElementById('sub3').classList.add('hidden-page');
+            document.getElementById('sub4').classList.add('hidden-page');
+            
+            // 선택한 페이지만 보이기
+            document.getElementById(pageId).classList.remove('hidden-page');
+            
+            // 메뉴 닫기 (모바일)
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
